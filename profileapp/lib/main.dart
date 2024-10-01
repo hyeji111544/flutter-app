@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:profileapp/components/profile_buttons.dart';
+import 'package:profileapp/components/profile_count_info.dart';
+import 'package:profileapp/components/profile_drawer.dart';
+import 'package:profileapp/components/profile_header.dart';
+import 'package:profileapp/components/profile_tab.dart';
 import 'package:profileapp/theme.dart';
 
 void main() {
@@ -23,17 +28,28 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ProfileDrawer()
+      endDrawer: ProfileDrawer(),// ProfileDrawer()
       // AppBar()
       body: Column(
         children: [
           // header()
+          const SizedBox(height: 20),
+          ProfileHeader(),
           // countInfo()
+          const SizedBox(height: 20),
+          ProfileCountInfo(),
           // Buttons()
+          ProfileButtons(),
+          const SizedBox(height: 20),
           // Tab()
+          Expanded(child: ProfileTab()),
         ],
       ),
     );
   }
+}
+
+AppBar _buildProfileAppBar(){
+  return AppBar();
 }
 
