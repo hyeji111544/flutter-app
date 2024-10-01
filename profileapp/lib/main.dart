@@ -29,7 +29,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: ProfileDrawer(),// ProfileDrawer()
-      // AppBar()
+      appBar: _buildProfileAppBar(),
       body: Column(
         children: [
           // header()
@@ -50,6 +50,10 @@ class ProfilePage extends StatelessWidget {
 }
 
 AppBar _buildProfileAppBar(){
-  return AppBar();
+  return AppBar(
+    leading: Icon(Icons.arrow_back_ios),
+    title: Text("Prifile"),
+    centerTitle: true,
+  );
 }
 
