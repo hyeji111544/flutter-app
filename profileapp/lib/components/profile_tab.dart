@@ -38,8 +38,30 @@ class _ProfileTabState extends State<ProfileTab> with SingleTickerProviderStateM
     return TabBarView(
       controller: _tabController,
       children: [
-        Container(color: Colors.green),
-        Container(color: Colors.red),
+        GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 10,
+                crossAxisCount: 3,
+                mainAxisSpacing: 10,
+            ),
+            itemCount: 42,
+            itemBuilder: (context, index) {
+              return Image.network(
+                "https://picsum.photos/id/${index + 10}/200/200");
+            },
+        ),
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: 10,
+            crossAxisCount: 3,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: 42,
+          itemBuilder: (context, index) {
+            return Image.network(
+                "https://picsum.photos/id/${index + 30}/200/200");
+          },
+        ),
       ],
     );
   }
