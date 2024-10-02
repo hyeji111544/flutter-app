@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loginapp/pages/home_page.dart';
 import 'package:loginapp/pages/login_page.dart';
+import 'package:loginapp/scroll_event.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,45 +27,55 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          TextFormField(
-            controller: username,
-            decoration: InputDecoration(
-              hintText: "Username",
-              prefixIcon: Icon(Icons.person),
-            ),
-          ),
-          //TextFormFilde 는 InputDecoration 을 사용
-          TextFormField(
-            controller: password,
-            obscureText: true, //비밀번호 기재시 안보이게 해주는것
-            decoration: InputDecoration(
-              hintText: "Password",
-              prefixIcon: Icon(Icons.password),
-            ),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                // 1. 값 가져오기
-                String un = username.text;
-                String pw = password.text;
-                print(un);
-                print(pw);
-
-                // 2. 통신하기
-
-                // 3. 화면 이동 (A -> B)
-                // [A, B] pushName
-                // [B] pushReplaceName
-                // [B] pushNamedAndRemoveUntil
-                Navigator.pushNamed(context, "/home");
-              },
-              child: Text("로그인")),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // 로그인 아이템 위젯 추가
+            loginItem(context, username, password),
+          ],
+        ),
       ),
     );
   }
+}
+
+
+
+Widget loginItem(BuildContext context, TextEditingController username, TextEditingController password) {
+  return Column(
+    children: [
+      Container(
+        height: 500,
+        color: Colors.yellow,
+      ),
+      TextFormField(
+        controller: username,
+        decoration: InputDecoration(
+          hintText: "Username",
+          prefixIcon: Icon(Icons.person),
+        ),
+      ),
+      TextFormField(
+        controller: password,
+        obscureText: true, // 비밀번호 입력 시 안 보이게 처리
+        decoration: InputDecoration(
+          hintText: "Password",
+          prefixIcon: Icon(Icons.password),
+        ),
+      ),
+      ElevatedButton(
+        onPressed: () {
+          String un = username.text;
+          String pw = password.text;
+          print(un);
+          print(pw);
+
+          Navigator.pushNamed(context, "/home");
+        },
+        child: Text("로그인"),
+      ),
+    ],
+  );
 }
 
 class HomePage extends StatelessWidget {
