@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:marketapp/models/product.dart';
+import 'package:marketapp/screens/components/product_item.dart';
 import 'package:marketapp/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,7 +29,20 @@ class HomeScreen extends StatelessWidget {
             preferredSize: Size.fromHeight(0.5),
             child: Divider(thickness: 0.5, height: 0.5, color: Colors.grey)),
       ),
-      body: Container(),
+      body: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(
+          height: 0,
+          indent: 16,
+          endIndent: 16,
+          color: Colors.grey,
+        ),
+        itemBuilder: (context, index) {
+          return ProductItem(
+            product: productList[index],
+          );
+        },
+        itemCount: productList.length,
+      ),
     );
   }
 }
